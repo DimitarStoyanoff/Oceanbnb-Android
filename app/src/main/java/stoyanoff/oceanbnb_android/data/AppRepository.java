@@ -208,4 +208,10 @@ public class AppRepository implements AppDataSource {
                     }
                 });
     }
+
+    @Override
+    public boolean isUserLoggedIn() {
+
+        return mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null) != null;
+    }
 }

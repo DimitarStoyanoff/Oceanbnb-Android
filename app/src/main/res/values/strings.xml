@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Oceanbnb-Android</string>
+    <string name="signup_name_hint">Name</string>
+    <string name="sign_up_fragment_email_hint">E-mail</string>
+    <string name="signup_fragment_password_hint">Password</string>
+    <string name="signup_fragment_reenter_password_hint">Confirm password</string>
+    <string name="signup_button_hint">Sign up</string>
+    <string name="fragment_account_signin_tab">SIGN IN</string>
+    <string name="fragment_account_signup_tab">SIGN UP</string>
+    <string name="passwords_dont_match_error_message">Passwords don\'t match</string>
+    <string name="short_password_error">Password is too short</string>
+    <string name="signup_required_field_error">Required field</string>
+    <string name="invalid_email_error">invalid e-mail</string>
+    <string name="registration_failed">Registration failed</string>
+    <string name="fragment_login_email_hint">E-mail</string>
+    <string name="fragment_login_password_hint">Password</string>
+    <string name="fragment_signin_button_text">Sign in</string>
+    <string name="fragment_signin_with_facebook_button_text">Sign in with Facebook</string>
+    <string name="fragment_sign_up_button_text">Sign up</string>
+    <string name="invalid_input_login_toast">Invalid username/password</string>
+    <string name="login_failed_toast">Login failed</string>
+    <string name="fragment_login__forgotten_password_text_view">Forgot your password?</string>
+    <string name="fragment_login_login_failed">Login failed</string>
 </resources>

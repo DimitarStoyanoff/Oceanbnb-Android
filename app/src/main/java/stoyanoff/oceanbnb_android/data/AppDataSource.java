@@ -81,4 +81,6 @@ public interface AppDataSource {
                      @NotNull AppDataSource.ShipDetailsCallback shipDetailsCallback);
 
     void getAllShips(@NotNull AppDataSource.AllShipsCallback allShipsCallback);
+
+    boolean isUserLoggedIn();
 }

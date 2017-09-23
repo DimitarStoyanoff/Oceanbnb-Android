@@ -30,7 +30,7 @@ public interface RetrofitCall {
     Call<Void> emailRegisterUser(@Field("Email") String email, @Field("Password") String password,
                                  @Field("ConfirmPassword") String confirmPassword);
 
-    @POST("api/token")
+    @POST("token")
     Call<AccessTokenResponse> getAccessTokenEmailLogin(@Body String body);
 
     @GET("Account/cruises")

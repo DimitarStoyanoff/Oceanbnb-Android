@@ -10,6 +10,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import stoyanoff.oceanbnb_android.data.AppDataSource;
 import stoyanoff.oceanbnb_android.data.models.AccessTokenResponse;
 import stoyanoff.oceanbnb_android.data.models.Cruise;
@@ -23,7 +24,7 @@ import stoyanoff.oceanbnb_android.data.models.UserCruise;
 
 public class RetrofitServices {
 
-    private final String API_URL = "http://localhost:14139/api";
+    private final String API_URL = "http://oceanbnb.azurewebsites.net/api/";
     private RetrofitCall service;
 
 
@@ -35,6 +36,7 @@ public class RetrofitServices {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -67,17 +69,16 @@ public class RetrofitServices {
         public void getAccessTokenFromEmail(String username, String password,
         final AppDataSource.OnLoginListener onLoginListener){
 
-            String bodyString = "Username=" +
+            String bodyString = "grant_type=password&username=" +
                     username +
-                    "&Password=" +
-                    password +
-                    "&grant_type=password";
+                    "&password=" +
+                    password;
             Call<AccessTokenResponse> call = service.getAccessTokenEmailLogin(bodyString);
             call.enqueue(new Callback<AccessTokenResponse>() {
                 @Override
                 public void onResponse(Call<AccessTokenResponse> call, Response<AccessTokenResponse> response) {
                     if(response.code() == 200){
-                        if(response.body() == null){
+                        if(response.body() != null){
                             onLoginListener.loginResponse(response.body());
                         }else{
                             onLoginListener.onDataNotAvailable();
