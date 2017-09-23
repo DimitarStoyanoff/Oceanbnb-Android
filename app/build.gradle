@@ -38,6 +38,8 @@ dependencies {
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     compile "com.squareup.picasso:picasso:$rootProject.picassoVersion"
     compile "com.synnapps:carouselview:$rootProject.carouselviewVersion"
+    compile "com.google.android.gms:play-services-maps:$rootProject.gmsVersion"
+    compile "com.google.maps.android:android-maps-utils:$rootProject.mapsUtilsVersion"
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"

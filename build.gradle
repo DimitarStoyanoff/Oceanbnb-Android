@@ -46,4 +46,6 @@ ext {
     carouselviewVersion = "0.0.9"
     jetbrainsVersion = "15.0"
     crashlyticsVersion = "2.6.8@aar"
+    gmsVersion = "11.0.0"
+    mapsUtilsVersion = "0.5+"
 }

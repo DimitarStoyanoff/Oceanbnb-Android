@@ -12,6 +12,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import stoyanoff.oceanbnb_android.data.AppDataSource;
 import stoyanoff.oceanbnb_android.data.models.AccessTokenResponse;
+import stoyanoff.oceanbnb_android.data.models.Cruise;
+import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
 import stoyanoff.oceanbnb_android.data.models.UserCruise;
 
@@ -132,5 +134,122 @@ public class RetrofitServices {
                 }
             });
         }
+
+        public void getAllCruises(String authorization,
+                                  final AppDataSource.AllCruisesCallback allCruisesCallback){
+            Call<List<Cruise>> call = service.getAllCruises(authorization);
+            call.enqueue(new Callback<List<Cruise>>() {
+                @Override
+                public void onResponse(Call<List<Cruise>> call, Response<List<Cruise>> response) {
+                    if(response.code() == 200 && response.body() != null){
+                        allCruisesCallback.getCruises(response.body());
+                    }else {
+                        allCruisesCallback.onDataNotAvailable();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Cruise>> call, Throwable t) {
+                    allCruisesCallback.onDataNotAvailable();
+                }
+            });
+        }
+
+        public void getCruiseById(String authorization, int cruiseId,
+                                  final AppDataSource.CruiseDetailsCallback cruiseDetailsCallback){
+            Call<Cruise> call = service.getCruiseById(authorization,cruiseId);
+            call.enqueue(new Callback<Cruise>() {
+                @Override
+                public void onResponse(Call<Cruise> call, Response<Cruise> response) {
+                    if(response.code() == 200 && response.body() != null){
+                        cruiseDetailsCallback.onCruiseLoaded(response.body());
+                    }else {
+                        cruiseDetailsCallback.onDataNotAvailable();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Cruise> call, Throwable t) {
+                    cruiseDetailsCallback.onDataNotAvailable();
+                }
+            });
+        }
+
+        public void addUserToCruise(String authorization, int userId, int cruiseId,
+                                    final AppDataSource.CodeCallback codeCallback){
+            Call<Void> call = service.addUserToCruise(authorization,userId,cruiseId);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if(response != null){
+                        codeCallback.getResponseCode(response.code());
+                    }else codeCallback.onDataNotAvailable();
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    codeCallback.onDataNotAvailable();
+                }
+            });
+        }
+
+        public void removeUserFromCruise(String authorization, int userId, int cruiseId,
+                                    final AppDataSource.CodeCallback codeCallback){
+            Call<Void> call = service.removeUserFromCruise(authorization,userId,cruiseId);
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if(response != null){
+                        codeCallback.getResponseCode(response.code());
+                    }else codeCallback.onDataNotAvailable();
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    codeCallback.onDataNotAvailable();
+                }
+            });
+        }
+
+        public void getShipById(String authorization, int shipId,
+                                final AppDataSource.ShipDetailsCallback shipDetailsCallback){
+            Call<Ship> call = service.getShipById(authorization,shipId);
+            call.enqueue(new Callback<Ship>() {
+                @Override
+                public void onResponse(Call<Ship> call, Response<Ship> response) {
+                    if(response.code() == 200 && response.body() != null){
+                        shipDetailsCallback.onShipLoaded(response.body());
+                    }else {
+                        shipDetailsCallback.onDataNotAvailable();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Ship> call, Throwable t) {
+                    shipDetailsCallback.onDataNotAvailable();
+                }
+            });
+        }
+
+        public void getAllShips(String authorization,
+                                final AppDataSource.AllShipsCallback allShipsCallback){
+            Call<List<Ship>> call = service.getAllShips(authorization);
+            call.enqueue(new Callback<List<Ship>>() {
+                @Override
+                public void onResponse(Call<List<Ship>> call, Response<List<Ship>> response) {
+                    if(response.code() == 200 && response.body() != null){
+                        allShipsCallback.getShips(response.body());
+                    }else {
+                        allShipsCallback.onDataNotAvailable();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Ship>> call, Throwable t) {
+                    allShipsCallback.onDataNotAvailable();
+                }
+            });
+        }
+
     }
 
