@@ -67,7 +67,8 @@ public class AppRepository implements AppDataSource {
         mRetrofitServices.getAccessTokenFromEmail(email, password, new OnLoginListener() {
             @Override
             public void loginResponse(AccessTokenResponse accessTokenResponse) {
-                mSharedPreferences.edit().putString(Constants.USER_ACCESS_TOKEN,accessTokenResponse.getToken()).commit();
+                String token = "Bearer " + accessTokenResponse.getToken();
+                mSharedPreferences.edit().putString(Constants.USER_ACCESS_TOKEN,token).commit();
                 onLoginListener.loginResponse(accessTokenResponse);
             }
 
@@ -213,5 +214,10 @@ public class AppRepository implements AppDataSource {
     public boolean isUserLoggedIn() {
 
         return mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null) != null;
+    }
+
+    @Override
+    public void removeUserFromPreferences() {
+        mSharedPreferences.edit().remove(Constants.USER_ACCESS_TOKEN).commit();
     }
 }

@@ -83,4 +83,6 @@ public interface AppDataSource {
     void getAllShips(@NotNull AppDataSource.AllShipsCallback allShipsCallback);
 
     boolean isUserLoggedIn();
+
+    void removeUserFromPreferences();
 }
