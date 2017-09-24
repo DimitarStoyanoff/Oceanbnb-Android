@@ -24,7 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import stoyanoff.oceanbnb_android.R;
-import stoyanoff.oceanbnb_android.profile.ActivityProfile;
+import stoyanoff.oceanbnb_android.cruises.ActivityCruises;
 import stoyanoff.oceanbnb_android.util.Injection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -321,7 +321,7 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
                 }else if(confirmPasswordEditTextSignUp.getError() != null){
 
                 }else {
-                    presenter.performLogin(emailEditTextSignUp.getText().toString(),
+                    presenter.performRegister(emailEditTextSignUp.getText().toString(),
                             PasswordEditTextSignUp.getText().toString());
                 }
             }
@@ -507,12 +507,13 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
 
     @Override
     public void successfulRegister() {
-        presenter.performLogin(emailEditText.getText().toString(),passwordEditText.getText().toString());
+        presenter.performLogin(emailEditTextSignUp.getText().toString(),
+                PasswordEditTextSignUp.getText().toString());
     }
 
     @Override
     public void successfulLogin() {
-        Intent intent = new Intent(getContext(), ActivityProfile.class);
+        Intent intent = new Intent(getContext(), ActivityCruises.class);
         startActivity(intent);
         getActivity().finish();
     }

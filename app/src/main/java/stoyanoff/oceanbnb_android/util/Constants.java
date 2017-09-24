@@ -7,4 +7,5 @@ package stoyanoff.oceanbnb_android.util;
 public class Constants {
 
     public static final String USER_ACCESS_TOKEN = "access token";
+    public static final String CRUISE_EXTRA = "cruise extra";
 }

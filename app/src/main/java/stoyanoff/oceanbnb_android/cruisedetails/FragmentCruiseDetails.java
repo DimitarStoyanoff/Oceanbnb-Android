@@ -38,4 +38,9 @@ public class FragmentCruiseDetails extends Fragment implements CruiseDetailsCont
     public void setPresenter(CruiseDetailsContract.Presenter presenter) {
 
     }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
 }

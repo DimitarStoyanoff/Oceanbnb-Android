@@ -37,4 +37,9 @@ public class FragmentShipDetails extends Fragment implements ShipDetailsContract
     public void setPresenter(ShipDetailsContract.Presenter presenter) {
 
     }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
 }

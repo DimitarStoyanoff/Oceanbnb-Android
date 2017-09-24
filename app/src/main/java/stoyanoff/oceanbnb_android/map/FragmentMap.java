@@ -36,4 +36,9 @@ public class FragmentMap extends Fragment implements MapContract.View{
     public void setPresenter(MapContract.Presenter presenter) {
 
     }
+
+    @Override
+    public boolean isActive() {
+        return isAdded();
+    }
 }

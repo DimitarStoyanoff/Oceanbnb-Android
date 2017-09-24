@@ -7,5 +7,6 @@ package stoyanoff.oceanbnb_android.util;
 public interface BaseView<T> {
 
     void setPresenter(T presenter);
+    boolean isActive();
 
 }

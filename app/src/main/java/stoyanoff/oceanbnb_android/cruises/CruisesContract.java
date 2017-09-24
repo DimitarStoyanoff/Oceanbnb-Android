@@ -1,5 +1,8 @@
 package stoyanoff.oceanbnb_android.cruises;
 
+import java.util.List;
+
+import stoyanoff.oceanbnb_android.data.models.Cruise;
 import stoyanoff.oceanbnb_android.util.BasePresenter;
 import stoyanoff.oceanbnb_android.util.BaseView;
 
@@ -10,10 +13,14 @@ import stoyanoff.oceanbnb_android.util.BaseView;
 public interface CruisesContract {
 
     interface View extends BaseView<Presenter>{
+        void showCruises(List<Cruise> cruises);
+        void showNoDataText();
+        void showCruiseDetails(Cruise cruise);
 
     }
 
     interface Presenter extends BasePresenter{
-
+        void loadCruises();
+        void openCruiseInfo(Cruise cruise);
     }
 }
