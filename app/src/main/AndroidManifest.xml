@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".map.ActivityMap" android:screenOrientation="portrait"/>
+        <activity android:name=".cruisedetails.ActivityCruiseDetails" android:screenOrientation="portrait"/>
+        <activity android:name=".profile.ActivityProfile" android:screenOrientation="portrait"/>
+        <activity android:name=".shipdetails.ActivityShipDetails" android:screenOrientation="portrait"/>
+        <activity android:name=".cruises.ActivityCruises" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
