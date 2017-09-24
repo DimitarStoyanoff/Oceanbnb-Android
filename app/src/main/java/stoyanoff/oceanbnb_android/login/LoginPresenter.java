@@ -20,6 +20,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         this.appRepository = appRepository;
         this.loginView = loginView;
         loginView.setPresenter(this);
+        start();
     }
 
     @Override

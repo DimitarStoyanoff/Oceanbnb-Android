@@ -55,6 +55,7 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
 
     private RelativeLayout signUpButton;
     private RelativeLayout signinButton;
+    private Button signupButtonReal;
     private RelativeLayout facebookLoginImageView;
     private RelativeLayout signInButtonReal;
 
@@ -159,29 +160,10 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
         emailEditTextSignUp = (EditText) view.findViewById(R.id.signup_fragment_email_et);
         PasswordEditTextSignUp = (EditText) view.findViewById(R.id.signup_fragment_password_et);
         confirmPasswordEditTextSignUp = (EditText) view.findViewById(R.id.signup_fragment_password2_et);
-        Button signupButton = (Button) view.findViewById(R.id.signup_fragment_signup_button);
+        signupButtonReal = (Button) view.findViewById(R.id.signup_fragment_signup_button);
 
+        setupSignUpButton();
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(emailEditTextSignUp.getText().toString().equals("")){
-                    emailEditTextSignUp.setError(getString(R.string.signup_required_field_error));
-                }else if(emailEditTextSignUp.getError() != null){
-
-                }else if(PasswordEditTextSignUp.getText().toString().equals("")){
-                    PasswordEditTextSignUp.setError(getString(R.string.signup_required_field_error));
-                }else if(PasswordEditTextSignUp.getError() != null){
-
-                }else if(confirmPasswordEditTextSignUp.getError() != null){
-
-                }else {
-                    presenter.performLogin(emailEditTextSignUp.getText().toString(),
-                            PasswordEditTextSignUp.getText().toString());
-                }
-            }
-        });
 
 
         PasswordEditTextSignUp.addTextChangedListener(new TextWatcher() {
@@ -309,14 +291,41 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
             }
         });
 
+        setupSignInButton();
+
+        return view;
+    }
+
+    private void setupSignInButton(){
         signInButtonReal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.performLogin(emailEditText.getText().toString(),passwordEditText.getText().toString());
             }
         });
+    }
 
-        return view;
+    private void setupSignUpButton(){
+        signupButtonReal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(emailEditTextSignUp.getText().toString().equals("")){
+                    emailEditTextSignUp.setError(getString(R.string.signup_required_field_error));
+                }else if(emailEditTextSignUp.getError() != null){
+
+                }else if(PasswordEditTextSignUp.getText().toString().equals("")){
+                    PasswordEditTextSignUp.setError(getString(R.string.signup_required_field_error));
+                }else if(PasswordEditTextSignUp.getError() != null){
+
+                }else if(confirmPasswordEditTextSignUp.getError() != null){
+
+                }else {
+                    presenter.performLogin(emailEditTextSignUp.getText().toString(),
+                            PasswordEditTextSignUp.getText().toString());
+                }
+            }
+        });
     }
 
     private void setUpAnimatorSets() {
@@ -487,7 +496,13 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
 
     @Override
     public void toggleLoading(boolean isOn) {
-
+        if(isOn){
+            signInButtonReal.setOnClickListener(null);
+            signupButtonReal.setOnClickListener(null);
+        }else {
+            setupSignInButton();
+            setupSignUpButton();
+        }
     }
 
     @Override
@@ -499,6 +514,7 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
     public void successfulLogin() {
         Intent intent = new Intent(getContext(), MainActivity.class);
         startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
