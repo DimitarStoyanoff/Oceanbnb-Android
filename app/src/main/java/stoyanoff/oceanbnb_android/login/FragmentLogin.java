@@ -24,7 +24,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import stoyanoff.oceanbnb_android.R;
-import stoyanoff.oceanbnb_android.map.ActivityMap;
+import stoyanoff.oceanbnb_android.cruises.ActivityCruises;
 import stoyanoff.oceanbnb_android.util.Injection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -513,7 +513,7 @@ public class FragmentLogin extends Fragment implements LoginContract.View{
 
     @Override
     public void successfulLogin() {
-        Intent intent = new Intent(getContext(), ActivityMap.class);
+        Intent intent = new Intent(getContext(), ActivityCruises.class);
         startActivity(intent);
         getActivity().finish();
     }

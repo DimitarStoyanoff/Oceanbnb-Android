@@ -31,6 +31,7 @@
         <activity android:name=".profile.ActivityProfile" android:screenOrientation="portrait"/>
         <activity android:name=".shipdetails.ActivityShipDetails" android:screenOrientation="portrait"/>
         <activity android:name=".cruises.ActivityCruises" android:screenOrientation="portrait"/>
-    </application>
+        <activity android:name=".rollcall.ActivityRollCall" android:screenOrientation="portrait"/>
+     </application>
 
 </manifest>

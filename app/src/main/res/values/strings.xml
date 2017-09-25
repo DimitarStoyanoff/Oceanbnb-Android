@@ -23,4 +23,5 @@
     <string name="fragment_login_login_failed">Login failed</string>
     <string name="fragment_cuises_no_cruises_found_toast">No crusies found</string>
     <string name="fragment_cruise_details_no_data_toast">Failed to load cruise</string>
+    <string name="fragment_roll_call_load_failed_toast">Failed to load users</string>
 </resources>
