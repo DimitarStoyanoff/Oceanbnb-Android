@@ -36,4 +36,12 @@
     <string name="fragment_cuise_details_cruise_name_placeholder">Cruise name</string>
     <string name="fragment_main_pager_profile_title">Profile</string>
     <string name="fragment_main_pager_cruises_title">Cruises</string>
+    <string name="ship_details_fragment_no_data_toast">Failed to load ship info</string>
+    <string name="fragment_ship_details_ship_name_text">Ship Name:</string>
+    <string name="fragment_ship_details__year_built_text">Year built:</string>
+    <string name="fragment_ship_details_passenger_capacity_text">Passenger capacity:</string>
+    <string name="fragment_ship_details_crew_count_text">Crew count:</string>
+    <string name="fragment_ship_details_weight_in_tons_text">Weight in tons:</string>
+    <string name="fragment_ship_details_length_in_meters_text">Length in meters:</string>
+    <string name="fragment_ship_details_beam_in_meters_text">Beam in meters:</string>
 </resources>
