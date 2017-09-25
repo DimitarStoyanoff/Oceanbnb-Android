@@ -2,7 +2,7 @@ package stoyanoff.oceanbnb_android.rollcall;
 
 import java.util.List;
 
-import stoyanoff.oceanbnb_android.data.models.User;
+import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.util.BasePresenter;
 import stoyanoff.oceanbnb_android.util.BaseView;
 
@@ -13,16 +13,16 @@ import stoyanoff.oceanbnb_android.util.BaseView;
 public interface RollCallContract {
 
     interface View extends BaseView<Presenter>{
-        void showUsers(List<User> users);
+        void showUsers(List<CruiseUser> users);
         void showNoDataText();
-        void showUserDetails(User user);
-        void addUserToList(User user);
-        void removeUserFromList(User user);
+        void showUserDetails(CruiseUser user);
+        void addUserToList(CruiseUser user);
+        void removeUserFromList(CruiseUser user);
     }
 
     interface Presenter extends BasePresenter{
         void loadRollCallUsers();
-        void openUserInfo(User user);
+        void openUserInfo(CruiseUser user);
         void addUserToCruise();
         void removeUserFromCruise();
     }

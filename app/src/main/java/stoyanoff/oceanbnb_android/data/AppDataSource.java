@@ -6,6 +6,7 @@ import java.util.List;
 
 import stoyanoff.oceanbnb_android.data.models.AccessTokenResponse;
 import stoyanoff.oceanbnb_android.data.models.Cruise;
+import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
 import stoyanoff.oceanbnb_android.data.models.UserCruise;
@@ -56,6 +57,11 @@ public interface AppDataSource {
         void onDataNotAvailable();
     }
 
+    interface CruiseUsersCallback{
+        void onUsersLoaded(List<CruiseUser> cruiseUsers);
+        void onDataNotAvailable();
+    }
+
     void registerUser(@NotNull String email, @NotNull String password,
                       @NotNull final CodeCallback codeCallback);
 
@@ -66,18 +72,21 @@ public interface AppDataSource {
 
      void getUserCruises(@NotNull AppDataSource.UserCruisesCallback userCruisesCallback);
 
+    void getCruiseUsers( int cruiseId,
+                        @NotNull CruiseUsersCallback cruiseUsersCallback);
+
     void getAllCruises(@NotNull AppDataSource.AllCruisesCallback allCruisesCallback);
 
-    void getCruiseById(@NotNull int cruiseId,
+    void getCruiseById(int cruiseId,
                        @NotNull AppDataSource.CruiseDetailsCallback cruiseDetailsCallback);
 
-    void addUserToCruise(@NotNull int userId, @NotNull int cruiseId,
+    void addUserToCruise(int cruiseId,
                          @NotNull AppDataSource.CodeCallback codeCallback);
 
-    void removeUserFromCruise(@NotNull int userId, @NotNull int cruiseId,
+    void removeUserFromCruise( int cruiseId,
                               @NotNull AppDataSource.CodeCallback codeCallback);
 
-    void getShipById(@NotNull int shipId,
+    void getShipById(int shipId,
                      @NotNull AppDataSource.ShipDetailsCallback shipDetailsCallback);
 
     void getAllShips(@NotNull AppDataSource.AllShipsCallback allShipsCallback);

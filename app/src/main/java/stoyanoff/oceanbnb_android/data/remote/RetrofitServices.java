@@ -14,6 +14,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 import stoyanoff.oceanbnb_android.data.AppDataSource;
 import stoyanoff.oceanbnb_android.data.models.AccessTokenResponse;
 import stoyanoff.oceanbnb_android.data.models.Cruise;
+import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
 import stoyanoff.oceanbnb_android.data.models.UserCruise;
@@ -136,6 +137,26 @@ public class RetrofitServices {
             });
         }
 
+        public void getCruiseUsers(String authorization, int cruiseId,
+                                   final AppDataSource.CruiseUsersCallback cruiseUsersCallback){
+            Call<List<CruiseUser>> call = service.getCruiseUsers(authorization,cruiseId);
+            call.enqueue(new Callback<List<CruiseUser>>() {
+                @Override
+                public void onResponse(Call<List<CruiseUser>> call, Response<List<CruiseUser>> response) {
+                    if(response.code() == 200 && response.body() != null){
+                        cruiseUsersCallback.onUsersLoaded(response.body());
+                    }else {
+                        cruiseUsersCallback.onDataNotAvailable();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<CruiseUser>> call, Throwable t) {
+                    cruiseUsersCallback.onDataNotAvailable();
+                }
+            });
+        }
+
         public void getAllCruises(String authorization,
                                   final AppDataSource.AllCruisesCallback allCruisesCallback){
             Call<List<Cruise>> call = service.getAllCruises(authorization);
@@ -176,7 +197,7 @@ public class RetrofitServices {
             });
         }
 
-        public void addUserToCruise(String authorization, int userId, int cruiseId,
+        public void addUserToCruise(String authorization, String userId, int cruiseId,
                                     final AppDataSource.CodeCallback codeCallback){
             Call<Void> call = service.addUserToCruise(authorization,userId,cruiseId);
             call.enqueue(new Callback<Void>() {
@@ -194,7 +215,7 @@ public class RetrofitServices {
             });
         }
 
-        public void removeUserFromCruise(String authorization, int userId, int cruiseId,
+        public void removeUserFromCruise(String authorization, String userId, int cruiseId,
                                     final AppDataSource.CodeCallback codeCallback){
             Call<Void> call = service.removeUserFromCruise(authorization,userId,cruiseId);
             call.enqueue(new Callback<Void>() {

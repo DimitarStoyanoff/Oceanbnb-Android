@@ -9,4 +9,6 @@ public class Constants {
     public static final String USER_ACCESS_TOKEN = "access token";
     public static final String CRUISE_EXTRA = "cruise extra";
     public static final String USER_ID_EXTRA = "user id extra";
+    public static final String USER_ID_PREF = "user id preference";
+    public static final String USER_NAME_PREF = "username";
 }

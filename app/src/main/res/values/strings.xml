@@ -24,4 +24,9 @@
     <string name="fragment_cuises_no_cruises_found_toast">No crusies found</string>
     <string name="fragment_cruise_details_no_data_toast">Failed to load cruise</string>
     <string name="fragment_roll_call_load_failed_toast">Failed to load users</string>
+    <string name="list_item_user_city_text">City</string>
+    <string name="list_item_user_user_name_text">User name</string>
+    <string name="list_item_user_email_text">Email</string>
+    <string name="fragment_roll_call_added_toast">Successfully added</string>
+    <string name="fragment_roll_call_removed_toast">Successfully removed</string>
 </resources>

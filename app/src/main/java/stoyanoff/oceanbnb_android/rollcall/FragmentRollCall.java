@@ -16,7 +16,7 @@ import java.util.List;
 
 import stoyanoff.oceanbnb_android.R;
 import stoyanoff.oceanbnb_android.data.models.Cruise;
-import stoyanoff.oceanbnb_android.data.models.User;
+import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.login.ActivityLogin;
 import stoyanoff.oceanbnb_android.util.Constants;
 import stoyanoff.oceanbnb_android.util.Injection;
@@ -30,8 +30,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class FragmentRollCall extends Fragment implements RollCallContract.View{
 
     private RollCallContract.Presenter presenter;
-    private UserAdapter userAdapter;
-    private Cruise cruise;
+    private CruiseUserAdapter cruiseUserAdapter;
 
     public static FragmentRollCall newInstance(){
         return new FragmentRollCall();
@@ -40,7 +39,7 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cruise = (Cruise) getActivity().getIntent().getSerializableExtra(Constants.CRUISE_EXTRA);
+        Cruise cruise = (Cruise) getActivity().getIntent().getSerializableExtra(Constants.CRUISE_EXTRA);
         new RollCallPresenter(cruise,Injection.provideAppRepository(getContext()),this);
     }
 
@@ -54,13 +53,13 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
         RecyclerView usersRecyclerView =
                 (RecyclerView) view.findViewById(R.id.fragment_roll_call_users_recycler_view);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        userAdapter = new UserAdapter(new ArrayList<User>(), new UserAdapter.OnUserItemClickListener() {
+        cruiseUserAdapter = new CruiseUserAdapter(new ArrayList<CruiseUser>(), new CruiseUserAdapter.OnUserItemClickListener() {
             @Override
-            public void onClick(User user) {
+            public void onClick(CruiseUser user) {
                 presenter.openUserInfo(user);
             }
         });
-        usersRecyclerView.setAdapter(userAdapter);
+        usersRecyclerView.setAdapter(cruiseUserAdapter);
 
         return view;
     }
@@ -77,8 +76,8 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
     }
 
     @Override
-    public void showUsers(List<User> users) {
-        userAdapter.setItems(users);
+    public void showUsers(List<CruiseUser> users) {
+        cruiseUserAdapter.setItems(users);
     }
 
     @Override
@@ -87,19 +86,21 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
     }
 
     @Override
-    public void showUserDetails(User user) {
+    public void showUserDetails(CruiseUser user) {
         Intent intent = new Intent(getContext(), ActivityLogin.class);
         intent.putExtra(Constants.USER_ID_EXTRA,user.getUserId());
         startActivity(intent);
     }
 
     @Override
-    public void addUserToList(User user) {
-        userAdapter.addItem(user);
+    public void addUserToList(CruiseUser user) {
+        cruiseUserAdapter.addItem(user);
+        Toast.makeText(getContext(), R.string.fragment_roll_call_added_toast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void removeUserFromList(User user) {
-        userAdapter.removeItem(user);
+    public void removeUserFromList(CruiseUser user) {
+        cruiseUserAdapter.removeItem(user);
+        Toast.makeText(getContext(), R.string.fragment_roll_call_removed_toast, Toast.LENGTH_SHORT).show();
     }
 }

@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by L on 23/09/2017.
  */
 
-public class CruiseUsers implements Serializable {
+public class CruiseUser implements Serializable {
 
     @SerializedName("UsersToCruisesId")
     private int usersToCruisesId;

@@ -8,6 +8,7 @@ import java.util.List;
 
 import stoyanoff.oceanbnb_android.data.models.AccessTokenResponse;
 import stoyanoff.oceanbnb_android.data.models.Cruise;
+import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
 import stoyanoff.oceanbnb_android.data.models.UserCruise;
@@ -69,6 +70,7 @@ public class AppRepository implements AppDataSource {
             public void loginResponse(AccessTokenResponse accessTokenResponse) {
                 String token = "Bearer " + accessTokenResponse.getToken();
                 mSharedPreferences.edit().putString(Constants.USER_ACCESS_TOKEN,token).commit();
+                mSharedPreferences.edit().putString(Constants.USER_ACCESS_TOKEN,accessTokenResponse.getUserName()).commit();
                 onLoginListener.loginResponse(accessTokenResponse);
             }
 
@@ -86,6 +88,7 @@ public class AppRepository implements AppDataSource {
                     @Override
                     public void getUserInfo(User userInfo) {
                         userInfoCallback.getUserInfo(userInfo);
+                        mSharedPreferences.edit().putString(Constants.USER_ID_PREF,Integer.toString(userInfo.getUserId())).commit();
                     }
 
                     @Override
@@ -112,6 +115,22 @@ public class AppRepository implements AppDataSource {
     }
 
     @Override
+    public void getCruiseUsers(int cruiseId, @NotNull final CruiseUsersCallback cruiseUsersCallback) {
+        mRetrofitServices.getCruiseUsers(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
+                cruiseId, new CruiseUsersCallback() {
+                    @Override
+                    public void onUsersLoaded(List<CruiseUser> cruiseUsers) {
+                        cruiseUsersCallback.onUsersLoaded(cruiseUsers);
+                    }
+
+                    @Override
+                    public void onDataNotAvailable() {
+                        cruiseUsersCallback.onDataNotAvailable();
+                    }
+                });
+    }
+
+    @Override
     public void getAllCruises(@NotNull final AllCruisesCallback allCruisesCallback) {
         mRetrofitServices.getAllCruises(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
                 new AllCruisesCallback() {
@@ -128,7 +147,7 @@ public class AppRepository implements AppDataSource {
     }
 
     @Override
-    public void getCruiseById(@NotNull int cruiseId,
+    public void getCruiseById(int cruiseId,
                               @NotNull final CruiseDetailsCallback cruiseDetailsCallback) {
         mRetrofitServices.getCruiseById(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
                checkNotNull(cruiseId), new CruiseDetailsCallback() {
@@ -145,10 +164,10 @@ public class AppRepository implements AppDataSource {
     }
 
     @Override
-    public void addUserToCruise(@NotNull int userId, @NotNull int cruiseId,
+    public void addUserToCruise(int cruiseId,
                                 @NotNull final CodeCallback codeCallback) {
         mRetrofitServices.addUserToCruise(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
-                checkNotNull(userId), checkNotNull(cruiseId), new CodeCallback() {
+                mSharedPreferences.getString(Constants.USER_ID_PREF,null), checkNotNull(cruiseId), new CodeCallback() {
                     @Override
                     public void getResponseCode(int responseCode) {
                         codeCallback.getResponseCode(responseCode);
@@ -162,10 +181,10 @@ public class AppRepository implements AppDataSource {
     }
 
     @Override
-    public void removeUserFromCruise(@NotNull int userId, @NotNull int cruiseId,
+    public void removeUserFromCruise(int cruiseId,
                                      @NotNull final CodeCallback codeCallback) {
         mRetrofitServices.removeUserFromCruise(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
-                checkNotNull(userId), checkNotNull(cruiseId), new CodeCallback() {
+                mSharedPreferences.getString(Constants.USER_ID_PREF,null), checkNotNull(cruiseId), new CodeCallback() {
                     @Override
                     public void getResponseCode(int responseCode) {
                         codeCallback.getResponseCode(responseCode);
@@ -179,7 +198,7 @@ public class AppRepository implements AppDataSource {
     }
 
     @Override
-    public void getShipById(@NotNull int shipId, @NotNull final ShipDetailsCallback shipDetailsCallback) {
+    public void getShipById(int shipId, @NotNull final ShipDetailsCallback shipDetailsCallback) {
         mRetrofitServices.getShipById(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
                 checkNotNull(shipId), new ShipDetailsCallback() {
                     @Override
@@ -219,5 +238,7 @@ public class AppRepository implements AppDataSource {
     @Override
     public void removeUserFromPreferences() {
         mSharedPreferences.edit().remove(Constants.USER_ACCESS_TOKEN).commit();
+        mSharedPreferences.edit().remove(Constants.USER_ID_PREF).commit();
+        mSharedPreferences.edit().remove(Constants.USER_NAME_PREF).commit();
     }
 }

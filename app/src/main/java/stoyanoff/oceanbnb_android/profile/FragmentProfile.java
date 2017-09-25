@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import stoyanoff.oceanbnb_android.R;
 import stoyanoff.oceanbnb_android.data.models.User;
 import stoyanoff.oceanbnb_android.login.ActivityLogin;
@@ -32,6 +34,7 @@ public class FragmentProfile extends Fragment implements ProfileContract.View{
     private TextView cityTextView;
     private TextView descriptionTextView;
     private ImageView logoutImageView;
+    private RoundedImageView roundedImageView;
 
     public static FragmentProfile newInstance(){
         return new FragmentProfile();
@@ -47,7 +50,7 @@ public class FragmentProfile extends Fragment implements ProfileContract.View{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile,container,false);
-        RoundedImageView roundedImageView =
+        roundedImageView =
                 (RoundedImageView) view.findViewById(R.id.fragment_profile_roundedImageView);
         roundedImageView.setImageResource(R.mipmap.profile_png);
 
@@ -79,6 +82,10 @@ public class FragmentProfile extends Fragment implements ProfileContract.View{
         genderTextView.setText(user.getGender());
         cityTextView.setText(user.getCity());
         descriptionTextView.setText(user.getDescription());
+        if(user.getProfilePhoto() != null)
+            Picasso.with(getContext())
+                .load(user.getProfilePhoto()).fit()
+                .into(roundedImageView);
     }
 
     @Override
