@@ -53,6 +53,7 @@ public class FragmentCruises extends Fragment implements CruisesContract.View{
                 presenter.openCruiseInfo(cruise);
             }
         });
+        cruiseRecyclerView.setAdapter(cruiseAdapter);
 
         return view;
     }
