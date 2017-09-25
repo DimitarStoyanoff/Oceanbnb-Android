@@ -55,6 +55,13 @@ public class FragmentCruises extends Fragment implements CruisesContract.View{
         });
         cruiseRecyclerView.setAdapter(cruiseAdapter);
 
+        Boolean isUserCruisesList =
+                (Boolean) getActivity().getIntent().getSerializableExtra(Constants.USER_CRUISES_EXTRA);
+        if(isUserCruisesList != null){
+            presenter.loadUserSpecificCruises();
+        }else {
+            presenter.loadCruises();
+        }
         return view;
     }
 

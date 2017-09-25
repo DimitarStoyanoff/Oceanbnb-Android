@@ -12,11 +12,13 @@ public class ShipDetailsPresenter implements ShipDetailsContract.Presenter {
 
     private final AppRepository appRepository;
     private final ShipDetailsContract.View shipDetailsView;
+    private int shipId;
 
-    public ShipDetailsPresenter(@NotNull AppRepository appRepository,
+    public ShipDetailsPresenter(int shipId,@NotNull AppRepository appRepository,
                                 @NotNull ShipDetailsContract.View shipDetailsView) {
         this.appRepository = appRepository;
         this.shipDetailsView = shipDetailsView;
+        this.shipId = shipId;
         shipDetailsView.setPresenter(this);
         start();
     }

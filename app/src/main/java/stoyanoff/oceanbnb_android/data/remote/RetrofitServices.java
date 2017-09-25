@@ -17,7 +17,6 @@ import stoyanoff.oceanbnb_android.data.models.Cruise;
 import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
-import stoyanoff.oceanbnb_android.data.models.UserCruise;
 
 /**
  * Created by L on 23/09/2017.
@@ -119,10 +118,10 @@ public class RetrofitServices {
         public void getUserCruises(String authorization,
                                    final AppDataSource.UserCruisesCallback userCruisesCallback){
 
-            Call<List<UserCruise>> call = service.getUserCruises(authorization);
-            call.enqueue(new Callback<List<UserCruise>>() {
+            Call<List<Cruise>> call = service.getUserCruises(authorization);
+            call.enqueue(new Callback<List<Cruise>>() {
                 @Override
-                public void onResponse(Call<List<UserCruise>> call, Response<List<UserCruise>> response) {
+                public void onResponse(Call<List<Cruise>> call, Response<List<Cruise>> response) {
                     if(response.code() == 200 && response.body() != null){
                         userCruisesCallback.getUserCruises(response.body());
                     }else {
@@ -131,7 +130,7 @@ public class RetrofitServices {
                 }
 
                 @Override
-                public void onFailure(Call<List<UserCruise>> call, Throwable t) {
+                public void onFailure(Call<List<Cruise>> call, Throwable t) {
                     userCruisesCallback.onDataNotAvailable();
                 }
             });

@@ -13,6 +13,8 @@ public interface CruiseDetailsContract {
     interface View extends BaseView<CruiseDetailsContract.Presenter>{
         void showCruiseDetails(Cruise cruise);
         void showNoDataAvailable();
+        void showRollCall(Cruise cruise);
+        void showShipDetails(int shipId);
     }
 
     interface Presenter extends BasePresenter{

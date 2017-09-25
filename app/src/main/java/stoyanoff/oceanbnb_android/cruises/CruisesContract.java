@@ -21,6 +21,7 @@ public interface CruisesContract {
 
     interface Presenter extends BasePresenter{
         void loadCruises();
+        void loadUserSpecificCruises();
         void openCruiseInfo(Cruise cruise);
     }
 }

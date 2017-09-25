@@ -47,6 +47,23 @@ public class CruisesPresenter implements CruisesContract.Presenter {
     }
 
     @Override
+    public void loadUserSpecificCruises() {
+        appRepository.getUserCruises(new AppDataSource.UserCruisesCallback() {
+            @Override
+            public void getUserCruises(List<Cruise> userCruises) {
+                if(cruisesView.isActive())
+                    cruisesView.showCruises(userCruises);
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                if(cruisesView.isActive())
+                    cruisesView.showNoDataText();
+            }
+        });
+    }
+
+    @Override
     public void openCruiseInfo(Cruise cruise) {
         if(cruisesView.isActive())
         cruisesView.showCruiseDetails(cruise);

@@ -8,12 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import stoyanoff.oceanbnb_android.R;
+import stoyanoff.oceanbnb_android.util.Constants;
+import stoyanoff.oceanbnb_android.util.Injection;
 
 /**
  * Created by L on 24/09/2017.
  */
 
 public class FragmentShipDetails extends Fragment implements ShipDetailsContract.View{
+
+    private ShipDetailsContract.Presenter presenter;
 
     public static FragmentShipDetails newInstance(){
         return new FragmentShipDetails();
@@ -22,6 +26,8 @@ public class FragmentShipDetails extends Fragment implements ShipDetailsContract
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int shipId = getActivity().getIntent().getIntExtra(Constants.SHIP_ID_EXTRA,0);
+        new ShipDetailsPresenter(shipId,Injection.provideAppRepository(getContext()),this);
     }
 
     @Nullable
@@ -35,7 +41,7 @@ public class FragmentShipDetails extends Fragment implements ShipDetailsContract
 
     @Override
     public void setPresenter(ShipDetailsContract.Presenter presenter) {
-
+        this.presenter = presenter;
     }
 
     @Override

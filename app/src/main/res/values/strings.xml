@@ -31,4 +31,7 @@
     <string name="fragment_roll_call_removed_toast">Successfully removed</string>
     <string name="fragment_roll_call_add_me_button">Add me</string>
     <string name="fragment_roll_call_remove_me_button">Remove me</string>
+    <string name="fragment_cruise_details_roll_call_text">Roll Call</string>
+    <string name="fragment_cruise_details_ship_details_text">Ship details</string>
+    <string name="fragment_cuise_details_cruise_name_placeholder">Cruise name</string>
 </resources>

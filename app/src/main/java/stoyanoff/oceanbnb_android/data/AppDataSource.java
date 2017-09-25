@@ -9,7 +9,6 @@ import stoyanoff.oceanbnb_android.data.models.Cruise;
 import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
-import stoyanoff.oceanbnb_android.data.models.UserCruise;
 
 /**
  * Created by L on 23/09/2017.
@@ -33,7 +32,7 @@ public interface AppDataSource {
     }
 
     interface UserCruisesCallback{
-        void getUserCruises(List<UserCruise> userCruises);
+        void getUserCruises(List<Cruise> userCruises);
         void onDataNotAvailable();
     }
 

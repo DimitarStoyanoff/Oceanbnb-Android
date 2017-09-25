@@ -15,7 +15,6 @@ import stoyanoff.oceanbnb_android.data.models.Cruise;
 import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
-import stoyanoff.oceanbnb_android.data.models.UserCruise;
 
 /**
  * Created by L on 23/09/2017.
@@ -35,7 +34,7 @@ public interface RetrofitCall {
     Call<AccessTokenResponse> getAccessTokenEmailLogin(@Body String body);
 
     @GET("Account/cruises")
-    Call<List<UserCruise>> getUserCruises(@Header("Authorization") String authorization);
+    Call<List<Cruise>> getUserCruises(@Header("Authorization") String authorization);
 
     @GET("Cruises/{cruiseId}/users")
     Call<List<CruiseUser>> getCruiseUsers(@Header("Authorization") String authorization,

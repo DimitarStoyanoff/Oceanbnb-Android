@@ -11,7 +11,6 @@ import stoyanoff.oceanbnb_android.data.models.Cruise;
 import stoyanoff.oceanbnb_android.data.models.CruiseUser;
 import stoyanoff.oceanbnb_android.data.models.Ship;
 import stoyanoff.oceanbnb_android.data.models.User;
-import stoyanoff.oceanbnb_android.data.models.UserCruise;
 import stoyanoff.oceanbnb_android.data.remote.RetrofitServices;
 import stoyanoff.oceanbnb_android.util.Constants;
 
@@ -103,7 +102,7 @@ public class AppRepository implements AppDataSource {
         mRetrofitServices.getUserCruises(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
                 new UserCruisesCallback() {
                     @Override
-                    public void getUserCruises(List<UserCruise> userCruises) {
+                    public void getUserCruises(List<Cruise> userCruises) {
                         userCruisesCallback.getUserCruises(userCruises);
                     }
 
