@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
 
     private RollCallContract.Presenter presenter;
     private CruiseUserAdapter cruiseUserAdapter;
+    private Button addRemoveButton;
+    private boolean isUserAdded;
 
     public static FragmentRollCall newInstance(){
         return new FragmentRollCall();
@@ -48,7 +51,18 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_roll_call,container,false);
 
+        addRemoveButton = (Button) view.findViewById(R.id.fragment_roll_call_add_remove_button);
 
+        addRemoveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isUserAdded){
+                    presenter.removeUserFromCruise();
+                }else {
+                    presenter.addUserToCruise();
+                }
+            }
+        });
 
         RecyclerView usersRecyclerView =
                 (RecyclerView) view.findViewById(R.id.fragment_roll_call_users_recycler_view);
@@ -64,6 +78,14 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
         return view;
     }
 
+    private void setButtonState(boolean isUserAdded){
+        if(isUserAdded){
+            addRemoveButton.setText(getString(R.string.fragment_roll_call_remove_me_button));
+        }else {
+            addRemoveButton.setText(getString(R.string.fragment_roll_call_add_me_button));
+        }
+    }
+
 
     @Override
     public void setPresenter(RollCallContract.Presenter presenter) {
@@ -76,8 +98,10 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
     }
 
     @Override
-    public void showUsers(List<CruiseUser> users) {
+    public void showUsers(List<CruiseUser> users, boolean isUserAdded) {
         cruiseUserAdapter.setItems(users);
+        setButtonState(isUserAdded);
+        this.isUserAdded = isUserAdded;
     }
 
     @Override

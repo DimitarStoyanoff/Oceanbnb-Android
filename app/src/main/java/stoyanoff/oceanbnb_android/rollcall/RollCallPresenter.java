@@ -36,8 +36,8 @@ public class RollCallPresenter implements RollCallContract.Presenter {
     public void loadRollCallUsers() {
         appRepository.getCruiseUsers(cruise.getCruiseId(), new AppDataSource.CruiseUsersCallback() {
             @Override
-            public void onUsersLoaded(List<CruiseUser> cruiseUsers) {
-               if(rollCallView.isActive()) rollCallView.showUsers(cruiseUsers);
+            public void onUsersLoaded(List<CruiseUser> cruiseUsers, boolean isUserAdded) {
+               if(rollCallView.isActive()) rollCallView.showUsers(cruiseUsers,isUserAdded);
             }
 
             @Override

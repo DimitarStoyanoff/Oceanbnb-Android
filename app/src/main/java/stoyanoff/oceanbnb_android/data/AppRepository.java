@@ -119,8 +119,13 @@ public class AppRepository implements AppDataSource {
         mRetrofitServices.getCruiseUsers(mSharedPreferences.getString(Constants.USER_ACCESS_TOKEN, null),
                 cruiseId, new CruiseUsersCallback() {
                     @Override
-                    public void onUsersLoaded(List<CruiseUser> cruiseUsers) {
-                        cruiseUsersCallback.onUsersLoaded(cruiseUsers);
+                    public void onUsersLoaded(List<CruiseUser> cruiseUsers, boolean isUserAdded) {
+                        String currentUserId = mSharedPreferences.getString(Constants.USER_ID_PREF,null);
+                        boolean isUserAddedToCruise = false;
+                        for(CruiseUser user : cruiseUsers){
+                            if(Integer.toString( user.getUserId()).equals(currentUserId)) isUserAddedToCruise = true;
+                        }
+                        cruiseUsersCallback.onUsersLoaded(cruiseUsers, isUserAddedToCruise);
                     }
 
                     @Override

@@ -13,7 +13,7 @@ import stoyanoff.oceanbnb_android.util.BaseView;
 public interface RollCallContract {
 
     interface View extends BaseView<Presenter>{
-        void showUsers(List<CruiseUser> users);
+        void showUsers(List<CruiseUser> users, boolean isUserAdded);
         void showNoDataText();
         void showUserDetails(CruiseUser user);
         void addUserToList(CruiseUser user);

@@ -144,7 +144,7 @@ public class RetrofitServices {
                 @Override
                 public void onResponse(Call<List<CruiseUser>> call, Response<List<CruiseUser>> response) {
                     if(response.code() == 200 && response.body() != null){
-                        cruiseUsersCallback.onUsersLoaded(response.body());
+                        cruiseUsersCallback.onUsersLoaded(response.body(),false);
                     }else {
                         cruiseUsersCallback.onDataNotAvailable();
                     }

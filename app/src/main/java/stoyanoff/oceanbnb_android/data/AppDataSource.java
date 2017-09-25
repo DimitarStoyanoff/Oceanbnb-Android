@@ -58,7 +58,7 @@ public interface AppDataSource {
     }
 
     interface CruiseUsersCallback{
-        void onUsersLoaded(List<CruiseUser> cruiseUsers);
+        void onUsersLoaded(List<CruiseUser> cruiseUsers, boolean isUserAdded);
         void onDataNotAvailable();
     }
 
