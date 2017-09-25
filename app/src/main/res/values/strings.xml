@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Oceanbnb-Android</string>
+    <string name="app_name">Oceanbnb</string>
     <string name="signup_name_hint">Name</string>
     <string name="sign_up_fragment_email_hint">E-mail</string>
     <string name="signup_fragment_password_hint">Password</string>
@@ -34,4 +34,6 @@
     <string name="fragment_cruise_details_roll_call_text">Roll Call</string>
     <string name="fragment_cruise_details_ship_details_text">Ship details</string>
     <string name="fragment_cuise_details_cruise_name_placeholder">Cruise name</string>
+    <string name="fragment_main_pager_profile_title">Profile</string>
+    <string name="fragment_main_pager_cruises_title">Cruises</string>
 </resources>

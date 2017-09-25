@@ -16,9 +16,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/API_KEY"/>
-        <activity android:name=".MainActivity">
 
-        </activity>
         <activity android:name=".login.ActivityLogin" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,6 +30,7 @@
         <activity android:name=".shipdetails.ActivityShipDetails" android:screenOrientation="portrait"/>
         <activity android:name=".cruises.ActivityCruises" android:screenOrientation="portrait"/>
         <activity android:name=".rollcall.ActivityRollCall" android:screenOrientation="portrait"/>
+        <activity android:name=".mainpager.ActivityMainPager" android:screenOrientation="portrait"/>
      </application>
 
 </manifest>
