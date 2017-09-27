@@ -126,49 +126,6 @@ public class FragmentCruiseDetails extends Fragment implements CruiseDetailsCont
                         return true;
                     }
                 });
-
-//                updateMap("");
-//
-//                cruiseGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
-//                    @Override
-//                    public View getInfoWindow(Marker marker) {
-//                        View customInfoWindowView = ((LayoutInflater)getActivity()
-//                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE))
-//                                .inflate(R.layout.info_window_layout, null);
-//                        return customInfoWindowView;
-//                    }
-//
-//                    @Override
-//                    public View getInfoContents(Marker marker) {
-//                        return null;
-//                    }
-//                });
-//                cruiseGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-//                    @Override
-//                    public boolean onMarkerClick(Marker marker) {
-//                        selectedMarker = marker;
-//                        slidingUpPanelLayout.setPanelHeight(panelSmallHeight);
-//                        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                        imm.hideSoftInputFromWindow(cruiseMapView.getWindowToken(), 0);
-//                        try {
-//                            storeDetailsFragment.updateStoreInfo((Store) marker.getTag(),lastLocation);
-//                        }catch (NullPointerException ex){
-//
-//                        }
-//                        marker.setIcon(BitmapDescriptorFactory
-//                                .fromBitmap(getMarkerBitmapFromView(((Store)marker.getTag()).getActiveOffersCount(),true)));
-//                        return false;
-//                    }
-//                });
-//                cruiseGoogleMap.setOnInfoWindowCloseListener(new GoogleMap.OnInfoWindowCloseListener() {
-//                    @Override
-//                    public void onInfoWindowClose(Marker marker) {
-//                        selectedMarker = null;
-//                        slidingUpPanelLayout.setPanelHeight(0);
-//                        marker.setIcon(BitmapDescriptorFactory
-//                                .fromBitmap(getMarkerBitmapFromView(((Store)marker.getTag()).getActiveOffersCount(),false)));
-//                    }
-//                });
             }
         });
 
@@ -180,8 +137,6 @@ public class FragmentCruiseDetails extends Fragment implements CruiseDetailsCont
         Marker marker;
         for (Location location : locations) {
                 marker = cruiseGoogleMap.addMarker(new MarkerOptions()
-//                        .icon(BitmapDescriptorFactory
-//                                .fromBitmap(getMarkerBitmapFromView(store.getActiveOffersCount(), false)))
                         .position(new LatLng(location.getLatitude(), location.getLongitude())));
                 marker.setTag(location);
                 builder.include(marker.getPosition());
@@ -212,7 +167,6 @@ public class FragmentCruiseDetails extends Fragment implements CruiseDetailsCont
                     if(lastLocation == null){
                         lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     }
-                    //    updateMap("");
                 }
             }
         }

@@ -44,4 +44,10 @@
     <string name="fragment_ship_details_weight_in_tons_text">Weight in tons:</string>
     <string name="fragment_ship_details_length_in_meters_text">Length in meters:</string>
     <string name="fragment_ship_details_beam_in_meters_text">Beam in meters:</string>
+    <string name="fragment_profile_name_placeholder">Name</string>
+    <string name="fragment_profile_email_placeholder">Email</string>
+    <string name="fragment_profile_gender_placeholder">Gender</string>
+    <string name="fragment_profile_city_placeholder">City</string>
+    <string name="fragment_profile_description_placeholder">Description</string>
+    <string name="fragment_profile_my_cruises_text">My cruises</string>
 </resources>

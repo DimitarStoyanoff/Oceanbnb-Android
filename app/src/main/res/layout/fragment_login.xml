@@ -27,7 +27,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:layout_marginStart="15dp"
-            app:srcCompat="@drawable/ic_profile_orange"
+            app:srcCompat="@drawable/ic_profile_blue"
             android:layout_gravity="center_vertical"
             android:layout_width="24dp"
             android:layout_height="24dp" />
@@ -194,7 +194,7 @@
                     android:layout_height="24dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="15dp"
-                    app:srcCompat="@drawable/ic_profile_orange" />
+                    app:srcCompat="@drawable/ic_profile_blue" />
 
                 <EditText
                     android:id="@+id/signup_fragment_email_et"
