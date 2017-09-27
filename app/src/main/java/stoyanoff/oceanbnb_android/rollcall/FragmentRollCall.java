@@ -70,7 +70,7 @@ public class FragmentRollCall extends Fragment implements RollCallContract.View{
         cruiseUserAdapter = new CruiseUserAdapter(new ArrayList<CruiseUser>(), new CruiseUserAdapter.OnUserItemClickListener() {
             @Override
             public void onClick(CruiseUser user) {
-                presenter.openUserInfo(user);
+               // presenter.openUserInfo(user);
             }
         });
         usersRecyclerView.setAdapter(cruiseUserAdapter);

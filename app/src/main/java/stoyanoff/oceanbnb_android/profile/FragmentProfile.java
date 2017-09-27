@@ -68,7 +68,7 @@ public class FragmentProfile extends Fragment implements ProfileContract.View{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(),ActivityCruises.class);
-                intent.putExtra(Constants.CRUISE_EXTRA,true);
+                intent.putExtra(Constants.USER_CRUISES_EXTRA,true);
                 startActivity(intent);
             }
         });

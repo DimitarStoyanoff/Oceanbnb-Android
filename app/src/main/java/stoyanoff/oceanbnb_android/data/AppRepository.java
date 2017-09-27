@@ -69,7 +69,7 @@ public class AppRepository implements AppDataSource {
             public void loginResponse(AccessTokenResponse accessTokenResponse) {
                 String token = "Bearer " + accessTokenResponse.getToken();
                 mSharedPreferences.edit().putString(Constants.USER_ACCESS_TOKEN,token).commit();
-                mSharedPreferences.edit().putString(Constants.USER_ACCESS_TOKEN,accessTokenResponse.getUserName()).commit();
+                mSharedPreferences.edit().putString(Constants.USER_NAME_PREF,accessTokenResponse.getUserName()).commit();
                 onLoginListener.loginResponse(accessTokenResponse);
             }
 
