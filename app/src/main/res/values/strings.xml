@@ -50,4 +50,6 @@
     <string name="fragment_profile_city_placeholder">City</string>
     <string name="fragment_profile_description_placeholder">Description</string>
     <string name="fragment_profile_my_cruises_text">My cruises</string>
+    <string name="list_item_cruise_cruise_name_placeholder">Cruise name</string>
+    <string name="fragment_cruise_details_destinations_text">Destinations</string>
 </resources>
