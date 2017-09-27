@@ -15,7 +15,7 @@ public class Location implements Serializable {
     @SerializedName("LocationName")
     private String locationName;
     @SerializedName("Lattitude")
-    private double lattitude;
+    private double latitude;
     @SerializedName("Longitude")
     private double longitude;
     @SerializedName("IsDeleted")
@@ -37,12 +37,12 @@ public class Location implements Serializable {
         this.locationName = locationName;
     }
 
-    public double getLattitude() {
-        return lattitude;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLattitude(double lattitude) {
-        this.lattitude = lattitude;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public double getLongitude() {

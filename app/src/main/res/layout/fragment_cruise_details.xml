@@ -54,10 +54,10 @@
     </LinearLayout>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_cruise_details_locations_recycler_view"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/fragment_cruise_details_mapview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>
