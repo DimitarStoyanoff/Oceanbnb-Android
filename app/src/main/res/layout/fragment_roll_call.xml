@@ -6,13 +6,16 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_roll_call_users_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fragment_roll_call_add_remove_button"/>
 
     <Button
         android:id="@+id/fragment_roll_call_add_remove_button"
         android:text="@string/fragment_roll_call_add_me_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rounded_edge_button"/>
 
 </RelativeLayout>
