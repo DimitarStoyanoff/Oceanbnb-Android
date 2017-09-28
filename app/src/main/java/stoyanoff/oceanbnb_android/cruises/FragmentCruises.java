@@ -30,6 +30,7 @@ public class FragmentCruises extends Fragment implements CruisesContract.View{
 
     private CruisesContract.Presenter presenter;
     private CruiseAdapter cruiseAdapter;
+    private Boolean isUserCruisesList;
 
     public static FragmentCruises newInstance(){
         return new FragmentCruises();
@@ -39,6 +40,8 @@ public class FragmentCruises extends Fragment implements CruisesContract.View{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new CruisesPresenter(Injection.provideAppRepository(getContext()),this);
+        isUserCruisesList =
+                (Boolean) getActivity().getIntent().getSerializableExtra(Constants.USER_CRUISES_EXTRA);
     }
 
     @Nullable
@@ -55,13 +58,8 @@ public class FragmentCruises extends Fragment implements CruisesContract.View{
         });
         cruiseRecyclerView.setAdapter(cruiseAdapter);
 
-        Boolean isUserCruisesList =
-                (Boolean) getActivity().getIntent().getSerializableExtra(Constants.USER_CRUISES_EXTRA);
-        if(isUserCruisesList != null){
-            presenter.loadUserSpecificCruises();
-        }else {
-            presenter.loadCruises();
-        }
+        callForCrusies();
+
         return view;
     }
 
@@ -73,6 +71,19 @@ public class FragmentCruises extends Fragment implements CruisesContract.View{
     @Override
     public boolean isActive() {
         return isAdded();
+    }
+
+    private void callForCrusies(){
+        if(isUserCruisesList != null){
+            presenter.loadUserSpecificCruises();
+        }else {
+            presenter.loadCruises();
+        }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+       callForCrusies();
     }
 
     @Override
